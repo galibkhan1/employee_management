@@ -1,0 +1,27 @@
+{% extends 'adminbase.html' %}
+{% block title %}
+admin profile
+{% endblock title %}
+{% block content %}
+<h1>hey this admin profile</h1>
+<table class='table'>
+    <th>admin data</th>
+    
+{% for i in data %}
+<tr>
+<td>
+{{i.username}}
+</td>
+<td>
+{{i.email}}
+</td>
+<td>
+{{i.date_joined}}
+</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock content %}
+
+

@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+profile
+{% endblock title %}
+{% block css %}
+<style>
+    body {
+        background-image:url({% static 'images/4.jpg' %});
+    }
+
+    td,
+    th {
+        color: white;
+    }
+
+    div {
+
+        position: relative;
+        animation-name: example;
+        animation-duration: 4s;
+        animation-direction: reverse;
+    }
+
+    @keyframes example {
+        0% {
+            background-color: ;
+            left: 0px;
+            top: 0px;
+        }
+
+        25% {
+            background-color: black;
+            left: 200px;
+            top: 0px;
+        }
+
+        50% {
+            background-color: dark-grey;
+            left: 200px;
+            top: 200px;
+        }
+
+        75% {
+            background-color: grey;
+            left: 0px;
+            top: 200px;
+        }
+
+        100% {
+            background-color: white;
+            left: 0px;
+            top: 0px;
+        }
+    }
+</style>
+{% endblock css %}
+{% block content %}
+<div class="mydiv">
+    <table class="table ">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col-2">{% for i in username %}{{i.firstname}} {{i.lastname}}{% endfor %} Profile</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+
+                <td>Firstname</td>
+                <td class="col-10">{% for i in username %}
+                    {{i.firstname}}
+                    {% endfor %}
+                </td>
+
+            </tr>
+            <tr>
+
+                <td>Lastname</td>
+                <td>{% for i in username %}
+                    {{i.lastname}}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+
+                <td>email</td>
+                <td>{% for i in username %}
+                    {{i.email}}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+
+                <td>password</td>
+                <td>{% for i in username %}
+                    {{i.passw}}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td>{% for i in username %}
+                    {{i.gender}}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+
+                <td>Contact no.</td>
+                <td>{% for i in username %}
+                    {{i.phone}}
+                    {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

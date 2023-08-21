@@ -1,0 +1,29 @@
+{% extends 'adminbase.html' %}
+{% block title %}
+adminfeedback
+{% endblock title %}
+{% block content %}
+<table class="table">
+    <th>S.no</th>
+    <th>username</th>
+    <th>user feedback</th>
+    <th>delete</th>
+    {% for feed in  data%}
+    <tr>
+        <td>
+            {{forloop.counter}}
+        </td>
+        <td>
+            {{feed.username}}
+        </td>
+        <td>
+            {{feed.userfeedback}}
+        </td>
+        <td>
+            <a class="button btn btn-dark"  href="../deletefeed/{{feed.id}}">delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
+

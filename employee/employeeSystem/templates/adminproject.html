@@ -1,0 +1,22 @@
+{% extends 'adminbase.html' %}
+{% block project %}{% endblock project %}
+{% block content %}
+<h1>create task</h1>
+<form action="" method = "POST">
+    {% csrf_token %}
+    <label for="">task name</label>
+    <input type="text" placeholder = "task name" name="taskname" class ="form-control"><br>
+    <label for="user">select employee</label>
+    <select name="user" id="user" class="form-control">
+        <option value="" selected="selected" disabled>select username</option>
+        {% for i in data %}
+        <option value="{{i.email}}" selected> {{i.firstname}} {{i.lastname}}</option>
+        {% endfor %}
+    </select><br>
+    <label for="">start date</label>
+    <input type="date" placeholder ="starting date" name="start_date" class ="form-control"><br>
+    <label for="">End date</label>
+    <input type="date" placeholder ="End date" name="end_date" class ="form-control"><br>
+    <input type="submit" value = "submit" class="form-control btn btn-dark">
+</form>
+{% endblock content %}

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <title>{% block title %}{% endblock title %}</title>
+  {% block css %}{% endblock css %}
+</head>
+
+<body>
+  {% if request.session.email %}
+  <div class="">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a href="#" class="navbar-brand">
+          <img src="/static/images/logo.png" height="28" alt="Employee System">
+        </a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav">
+            <a href="#" class="nav-item nav-link active">{% for i in username %}{{i.firstname}} {{i.lastname}}{% endfor %}</a>
+            <a href="../profile" class="nav-item nav-link">Profile</a>
+            <a href="../notifications" class="nav-item nav-link">notifications </a>
+            <a href="../dashboard" class="nav-item nav-link">dashboard</a>
+            <a href="../feedback" class="nav-item nav-link">feedback</a>
+          </div>
+          <div class="navbar-nav ms-auto">
+
+            <form class="d-flex" action='{% url 'logout' %}'>
+              <input type="submit" value='logout' class="btn btn-dark">
+            </form>
+          </div>
+          {% else %}
+          <div class="">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+              <div class="container-fluid">
+                <a href="#" class="navbar-brand">
+                  <img src="/static/images/logo.png" height="28" alt="Employee System">
+                </a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                  <div class="navbar-nav">
+                    <a href="../main" class="nav-item nav-link active">Home</a>
+                    <a href="../aboutUs" class="nav-item nav-link">aboutUs</a>
+                    <a href="#" class="nav-item nav-link">contactUs</a>
+                    <a href="../feed" class="nav-item nav-link">feedback</a>
+                  </div>
+                  <div class="navbar-nav ms-auto">
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#login">
+                      login
+                    </button>
+
+                    <div class="modal fade" id="login" tabindex="-1" aria-labelledby="login" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="login">login</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+
+                            <div style="float:right;margin-right:100px;padding:20px;border: 20px solid grey;">
+                              <h2>login form</h2>
+                              <form action={% url 'login' %} method="POST">
+                                {% csrf_token %}
+                                <label for="">email:</label>
+                                <div class="col">
+                                  <input type="text" class="form-control" name="email" placeholder="email"
+                                    aria-label="email" Required>
+                                </div>
+                                <label for="">password:</label>
+                                <div class="col">
+                                  <input type="password" class="form-control" name="password" placeholder="password"
+                                    aria-label="password" Required>
+                                </div>
+
+
+
+                                {% comment %}
+                            </div> {% endcomment %}
+
+
+                          </div>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <input type="submit" value="login" class="btn btn-secondary">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </form>
+
+
+                  <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#signUp">
+                    signUp
+                  </button>
+
+                  <div class="modal fade" id="signUp" tabindex="-1" aria-labelledby="signUp" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="signUp">signUp</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div style="float:right;margin-right:80px;padding:20px;border: 20px solid grey;">
+                            <center>
+                              <h2>Registration form </h2>
+                            </center>
+                            <form action={% url 'register' %} method="POST">
+                              {% csrf_token %}
+                              {% comment %} <div class="mydiv"> {% endcomment %}
+                                <label for="">Name:</label>
+                                <div class="row">
+                                  <div class="col">
+                                    <input type="text" class="form-control" name="fname" placeholder="First name"
+                                      aria-label="First name">
+                                  </div>
+                                  <div class="col">
+                                    <input type="text" class="form-control" name="lname" placeholder="Last name"
+                                      aria-label="Last name">
+                                  </div>
+                                  <label for="">email</label>
+                                  <div class="col">
+                                    <input type="email" class="form-control" name="email" placeholder="email"
+                                      aria-label="email" Required>
+                                  </div>
+                                  <label for="">password</label>
+                                  <div class="col">
+                                    <input type="password" class="form-control" name="password" placeholder="password"
+                                      aria-label="password" Required>
+                                  </div>
+                                  <label for="">Gender:</label>
+                                  <div class="col">
+                                    <input type="radio" name="gender" value="male">male
+                                    <input type="radio" name="gender" value="female">female
+                                  </div>
+                                  <label for="">contact no:</label>
+                                  <div class="col">
+                                    <input type="text" class="form-control" name="contact" placeholder="contact number"
+                                      aria-label="contact number" Required>
+                                  </div>
+                                </div>
+
+                              </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-secondary" value="submit">
+                          </div>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  {% endif %}
+            </nav>
+          </div>
+
+          <!-- Optional JavaScript; choose one of the two! -->
+
+          <!-- Option 1: Bootstrap Bundle with Popper -->
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+
+          <!-- Option 2: Separate Popper and Bootstrap JS -->
+          <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+          {% block content %}{% endblock content %}
+          <footer>{% block footer %}{% endblock footer %}</footer>
+</body>
+
+</html>

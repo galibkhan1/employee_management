@@ -1,0 +1,23 @@
+{% extends 'adminbase.html' %}
+{% block title %}project detail{% endblock title %}
+{% block content %}
+<table class='table'>
+    <th>taskname</th>
+    <th>user email</th>
+    <th>Action</th>
+<tr>
+{% for d in data %}
+<td>
+{{d.taskname}}
+</td>
+<td>
+{{d.usermail}}
+</td>
+<td>
+<a class="button btn btn-dark"  href="../delete/{{d.id}}">delete</a>
+</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock content %}
+

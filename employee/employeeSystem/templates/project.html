@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+project
+{% endblock title %}
+{% block content %}
+<div style ="text-align:center;margin-top:10px;">
+{% if data %}
+<table class='table'> 
+<tr>  
+<th>task name</th>
+<th>email</th>
+<th>start date</th>
+<th>end date</th>
+</tr> 
+{% for i in data %}
+<tr>
+<td>{{i.taskname}}</td>
+<td>{{i.usermail}}</td>
+<td>{{i.starttime}}</td>
+<td>{{i.endtime}}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<h1>there is no task submit by admin</h1>
+{% endif %}
+</div>
+{% endblock content %}
+
+
+

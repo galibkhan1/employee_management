@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+home
+{% endblock title %}
+{% block css %}
+<style>
+    .intro{
+        float:right;
+
+
+    }
+    .footer{
+        background-color:grey;
+        padding:15px;
+        text-align:center;
+        color:white;
+    }
+</style>
+{% endblock css %}
+{% block content %}
+{% if error_msg %}
+<div class="modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h3>{{error_msg}}</h3>
+      </div>
+      <form action=" {% url 'main' %}" method = "post">
+          {% csrf_token %}
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Ok</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %} 
+<div class = "intro">
+    <h1>this is Employee Management System</h1>
+    <p>This project aims to simplify the task of maintaining records of the employees of company.</p>
+    <p>Provides full functuinal reports to management of company.</p>
+    <p>The Employee Management system has been developed to override the problems <br>
+        prevailing in the practicing manual system.</p>
+</div>
+<img src="{% static 'images/1.png' %}" alt="image not loaded" height = "40%" width = "40%">
+
+{% endblock content %}
+{% block footer %}
+<div class="footer">
+This website uses cookies to ensure you get the best experience on our website.
+</div>
+{% endblock footer %}

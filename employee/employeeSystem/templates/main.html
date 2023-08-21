@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+home
+{% endblock title %}
+{% block css %}
+<style>
+  .intro{
+    float:right;
+  
+  
+  }
+  .footer{
+    margin-top:300px; 
+    background-color:grey;
+    padding:15px;
+    text-align:center;
+    color:white;
+    position: relative;
+    
+  }
+  .mydiv{
+    display:flex;
+    justify-content:center;
+  }
+  .mydiv1{
+    width:500px;
+    height:200px;
+  }
+  
+  .carousel-control-prev-icon, .carousel-control-next-icon {
+    height: 100px;
+    width: 100px;
+    outline: black;
+    background-color: rgba(0, 0, 0, 0.3);
+    background-size: 50%, 50%;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+  .carousel{
+    border: 4px solid grey ;
+  }
+  .mydiv{
+    display:flex;
+    justify-content:center;
+    margin-left:35%;
+  }
+</style>
+{% endblock css %}
+{% comment %} {% block content %}
+{% if error_msg %}
+<div class="modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h3>{{error_msg}}</h3>
+      </div>
+      <form action=" {% url 'main' %}" method = "post">
+          {% csrf_token %}
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Ok</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %} 
+<div>
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="mydiv">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'images/1.jpg' %}" class="d-block w-50 h-50" alt="server not responding">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/feedback.jpg' %}" class="d-block w-50 h-50" alt="server not responding">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/mine.jpg' %}" class="d-block w-50 h-50" alt="server not responding">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev"  >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  </div>
+
+ 
+{% endblock content %} {% endcomment %}
+{% block footer %}
+<div class="footer" style="margin-top:40%">
+This website uses cookies to ensure you get the best experience on our website.
+</div>
+{% endblock footer %}
+

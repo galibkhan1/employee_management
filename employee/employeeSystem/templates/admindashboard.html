@@ -1,0 +1,61 @@
+{% extends 'adminbase.html' %}
+
+hey this is admin {{request.session.uname}}
+{% block title %}admin dashboard{% endblock title %}
+{% block content %}
+
+<table class="table">
+    <tr>
+        <th>serial</th>
+        <th>Employee name</th>
+        <th>Gender</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>remove</th>
+    </tr>
+    {% for emp in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        {% comment %} <td>{{forloop counter}}</td> {% endcomment %}
+        <td>{{emp.firstname}} {{emp.lastname}}</td>
+        <td>{{emp.gender}}</td>
+        <td>{{emp.phone}}</td>
+        <td>{{emp.email}}</td>
+        <td>
+          <a class = "button btn btn-dark" href="../deleteemp/{{emp.id}}">remove</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  {% comment %} <div class="modal fade" id="Task" tabindex="-1" aria-labelledby="TaskLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="TaskLabel">Task</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="" method = "">
+              <label for="">task name</label>
+              <input type="text" placeholder = "task name" name="taskname" class ="form-control">
+              <label for="">user</label>
+              <input type="text" placeholder = "" name="username" class ="form-control">
+              <label for="">start date</label>
+              <input type="date" placeholder ="starting date" name="start_date" class ="form-control">
+              <label for="">End date</label>
+              <input type="date" placeholder ="End date" name="end_date" class ="form-control">
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Submit task</button>
+        </div>
+      </div>
+    </div>
+  </div> {% endcomment %}
+{% endblock content %}

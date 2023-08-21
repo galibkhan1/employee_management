@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}attendence{% endblock title %}
+{% block content %}
+{% if error_msg %}
+<div class="modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h3>{{error_msg}}</h3>
+      </div>
+      <form action=" {% url 'attendence' %}" method = "post">
+          {% csrf_token %}
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Ok</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+<h1>Hey! {{request.session.username}} {{request.session.lastname}}
+</h1>
+<br>
+{% if request.session.att %}
+<div style="float:right;padding:20px;border: 20px solid grey;">
+  <h1>hey! {{request.session.username}} you marked as {{request.session.att}}</h1>
+  </div>
+  {% else %}
+<h3>mark your attendence here</h3>
+<div class="container">
+<form action="{% url 'attendence' %}" method = "POST" id="#attend" >
+{% csrf_token %}
+<h3>
+<div class="col">
+<input type="radio" name="attened" value="present">present
+<br>
+<input type="radio" name="attened" value="absent">absent
+</div>
+</h3>
+<input type="submit" value="submit" class = "btn btn-dark">
+</form>
+{% endif %}
+<script>
+  if(window.history.replacestate){
+    window.history.replacestate(null,null,window.location.href);
+  }
+</script>
+
+{% endblock content %}
+
